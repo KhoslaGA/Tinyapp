@@ -1,0 +1,230 @@
+html {
+    box-sizing: border-box;
+  }
+  *,
+  *:before,
+  *:after {
+    box-sizing: inherit;
+  }
+  
+  body {
+    background-color: rgb(1, 33, 43);
+    color: whitesmoke;
+    font-family: sans-serif;
+    padding: 1em 2em;
+    /* background-image: url("/static/flowers.png");
+    background-repeat: no-repeat; */
+  }
+  a {
+    text-decoration: none;
+    color: pink;
+  }
+  
+  a:visited {
+    text-decoration: none;
+    color: pink;
+  }
+  
+  nav {
+    display: flex;
+    justify-content: space-between;
+    height: 20vh;
+    align-items: center;
+    font-size: 1em;
+    margin: 1em;
+  }
+  
+  .navLeft {
+    /* color: red; */
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin: 1em;
+    letter-spacing: 3px;
+  }
+  
+  .navLeft a {
+    margin: 0 0.5em;
+    text-transform: uppercase;
+  }
+  
+  .navbar-brand {
+    font-size: 2.5em;
+    margin-bottom: 0;
+  }
+  
+  .not-brand {
+    display: flex;
+    align-items: flex-end;
+  }
+  
+  .inAs {
+    font-size: 1em;
+    margin: 1em;
+    text-transform: uppercase;
+  }
+  
+  .inAs p {
+    display: contents;
+  }
+  
+  .log-reg-right {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .log-reg-right .navbar-brand {
+    margin-left: 1em;
+    font-size: 2em;
+  }
+  
+  .logout-btn {
+    outline: none;
+    text-decoration: none;
+    border: none;
+    background-color: rgb(1, 33, 43);
+    color: whitesmoke;
+    font-size: 1em;
+    margin: 1em;
+    text-transform: uppercase;
+  }
+  
+  .btn {
+    height: 2em;
+    width: 5em;
+    border-radius: 6px;
+    border: 0px;
+    font-size: 1em;
+    outline: none;
+    background-color: pink;
+    color: white;
+    font-weight: 600;
+    font-family: "Varela Round", sans-serif;
+    /* margin-top: 1em; */
+    margin-right: 1.5em;
+  }
+  
+  h3 {
+    font-size: 2.5em;
+  }
+  
+  .main-login {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 1.5em;
+  }
+  
+  .form-group label {
+    display: flex;
+    align-self: flex-start;
+    margin: 0.75em;
+  }
+  
+  .form-group input {
+    display: flex;
+    align-self: flex-start;
+    height: 30px;
+    font-size: 0.75em;
+    padding: 10px;
+    border-radius: 6px;
+    outline: none;
+  }
+  .form-group input:active {
+    outline: none;
+  }
+  
+  .enter {
+    text-transform: uppercase;
+    font-weight: 200;
+    margin: 0.8em;
+  }
+  
+  .create-btn {
+    align-self: flex-start;
+    margin: 1em 0 0 0.9em;
+  }
+  
+  table {
+    width: 90%;
+    margin: auto;
+    text-align: justify;
+  }
+  
+  th {
+    font-size: 1.25em;
+    text-transform: uppercase;
+    font-weight: 600;
+    padding: 1em;
+  }
+  
+  td {
+    font-size: 1.25em;
+    /* text-transform: uppercase; */
+    font-weight: 300;
+    padding: 1em;
+  }
+  
+  .btn-danger {
+    background-color: rgb(244, 79, 150);
+  }
+  
+  .card-body {
+    /* margin: 1em; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .card-footer {
+    /* margin: 1em; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .card-footer button {
+    align-self: center;
+    margin: 1em 0;
+  }
+  
+  h4 {
+    font-size: 1.25em;
+    font-weight: 300;
+  }
+  
+  .create-btn {
+    align-self: flex-start;
+    /* margin-left: 0; */
+  }
+  
+  a:hover {
+    color: rgb(244, 79, 150);
+  }
+  
+  .flowers {
+    position: absolute;
+    left: 0vw;
+    top: 50vh;
+    width: 100vw;
+    opacity: 0.7;
+    z-index: -10;
+  }
+  
+  .center-main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  /* .card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  } */
