@@ -1,38 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <title>URL - TinyApp Example</title>
-    <link rel="stylesheet" href="/static/css/body.css" />
-  </head>
 
-  <body>
-    <%- include('partials/_header', {user: user}) %>
+<head>
+  <title>URL - TinyApp Example</title>
+  <link rel="stylesheet" href="/css/body.css" />
+</head>
+
+<body>
+  <%- include('partials/_header', {user: user}) %>
     <div class="card text-center">
       <div class="card-header"></div>
       <% if (!user) { %>
-      <div class="card-body">
-        <p>You're not logged in! Please login to access this page.</p>
-      </div>
-      <% } else if (!shortURL) { %>
-      <div class="card-body">
-        <p>This does not belong to you. Go away!</p>
-      </div>
-      <% } else { %>
-      <div class="card-body">
-        <h4 class="card-title">TinyURL for: <%= longURL %></h4>
-        <h4>Short URL: <a href="/u/<%= shortURL %>"><%= shortURL %></a></h4>
-      </div>
-      <div class="card-footer">
-        <label>
-          <h3>edit</h3>
-        </label>
-        <form class="form-group" method="POST" action="/urls/<%= shortURL %>">
-          <input type="text" name="longURL" placeholder="http://" />
-          <button type="submit" class="btn create-btn">submit</button>
-        </form>
-      </div>
-      <% } %>
+        <div class="card-body">
+          <p>You're not logged in! Please login to access this page.</p>
+        </div>
+        <% } else if (!shortURL) { %>
+          <div class="card-body">
+            <p>This does not belong to you. Go away!</p>
+          </div>
+          <% } else { %>
+            <div class="card-body">
+              <h4 class="card-title">TinyURL for: <%= longURL %>
+              </h4>
+              <h4>Short URL: <a href="/u/<%= shortURL %>">
+                  <%= shortURL %>
+                </a></h4>
+            </div>
+            <div class="card-footer">
+              <label>
+                <h3>edit</h3>
+              </label>
+              <form class="form-group" method="POST" action="/urls/<%= shortURL %>">
+                <input type="text" name="longURL" placeholder="http://" />
+                <button type="submit" class="btn create-btn">submit</button>
+              </form>
+            </div>
+            <% } %>
     </div>
     <img class="flowers" src="/static/flowers.png" />
-  </body>
+</body>
+
 </html>
