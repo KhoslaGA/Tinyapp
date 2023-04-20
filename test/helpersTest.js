@@ -1,7 +1,7 @@
 
 const { assert } = require('chai');
 
-const { getUserByEmail, urlsForUser, getRandomString } = require('../helpers.js');
+const { userIdFromEmail, urlsForUser, generateRandomString, cookieHasUser, emailHasUser } = require('../helpers');
 
 const testUsers = {
   "userRandomID": {
@@ -22,9 +22,9 @@ const testURLDatabase = {
   i245G3: { longURL: "https://www.yahoo.ca", userID: "bb1234" }
 };
 
-describe('getUserByEmail', function () {
+describe('userIdfromEmail', function () {
   it('should return a user with valid email', function () {
-    const user = getUserByEmail("user@example.com", testUsers);
+    const user = userIdFromEmail("user@example.com", testUsers);
     const expectedOutput = "userRandomID";
     assert.strictEqual(user.id, expectedOutput);
   });
@@ -44,13 +44,13 @@ describe('getUserByEmail', function () {
 
 describe('generateRandomString', function () {
   it('should return a string', function () {
-    const actual = typeof getRandomString();
+    const actual = typeof generateRandomString();
     const expected = "string";
     assert.strictEqual(actual, expected);
   });
 
   it('should return false between two random strings', function () {
-    const actual = getRandomString(5) === getRandomString(5);
+    const actual = generateRandomString(5) === generateRandomString(5);
     const expected = false;
     assert.strictEqual(actual, expected);
   });
@@ -67,5 +67,34 @@ describe('urlsForUser', function () {
     const actual = urlsForUser("aJ48lW", testURLDatabase);
     const expected = { b6UTxQ: { longURL: 'https://www.tsn.ca', userID: 'aJ48lW' } };
     assert.deepEqual(actual, expected);
+  });
+});
+describe('cookieHasUser', function () {
+
+  it('should return true if a cookie corresponds to a user in the database', function () {
+    const existingCookie = cookieHasUser("user1RandomID", testUsers);
+    const expectedOutput = true;
+    assert.equal(existingCookie, expectedOutput);
+  });
+
+  it('should return false if a cookie does not correspond to a user in the database', function () {
+    const nonExistantCookie = cookieHasUser("user3RandomID", testUsers);
+    const expectedOutput = false;
+    assert.equal(nonExistantCookie, expectedOutput);
+  });
+});
+
+describe('emailHasUser', function () {
+
+  it('should return true if email corresponds to a user in the database', function () {
+    const existingEmail = emailHasUser("user1@example.com", testUsers);
+    const expectedOutput = true;
+    assert.equal(existingEmail, expectedOutput);
+  });
+
+  it('should return false if email does not correspond to a user in the database', function () {
+    const nonExistantEmail = emailHasUser("fake_email@test.com", testUsers);
+    const expectedOutput = false;
+    assert.equal(nonExistantEmail, expectedOutput);
   });
 });
