@@ -36,6 +36,7 @@ app.get("/", (req, res) => {
   }
 });
 
+//Routes
 app.get("/urls", (req, res) => {
   if (!cookieHasUser(req.session.user_id, users)) {
     res.end("Please login to get access");
