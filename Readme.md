@@ -9,8 +9,8 @@ EJS
 bcrypt
 body-parser
 cookie-session
-Getting Started
+
 
 ## Getting started
-Install all dependencies (using the npm install command).
+Install all dependencies (using the npm install tinyapp).
 Run the development web server using the node express_server.js command.
