@@ -11,6 +11,14 @@ const { users, urlDatabase } = require("./database");
 
 /* Below are ROUTES */
 
+app.set("view engine", "ejs");
+// app.use(express.static('public'));
+
+app.use(express.static('public', () => {
+  console.log('Static assets middleware called');
+}));
+
+
 app.get("/", (req, res) => {
   if (cookieHasUser(req.session.user_id, users)) {
     res.redirect("/urls");
