@@ -45,6 +45,8 @@ app.get("/urls", (req, res) => {
     urls: urlsForUser(req.session.user_id, urlDatabase),
     user: users[req.session.user_id],
   };
+  console.log('users', users);
+  console.log('urlDatabase', urlDatabase);
   res.render("urls_index", templateVars);
 });
 
@@ -82,14 +84,24 @@ app.get("/login", (req, res) => {
 });
 
 app.get("/urls/:shortURL", (req, res) => {
+
   if (urlDatabase[req.params.shortURL]) {
-    let templateVars = {
-      shortURL: req.params.shortURL,
-      longURL: urlDatabase[req.params.shortURL].longURL,
-      urlUserID: urlDatabase[req.params.shortURL].userID,
-      user: users[req.session.user_id],
-    };
-    res.render("urls_show", templateVars);
+    const userID = req.session.user_id;
+    const userUrls = urlsForUser(userID, urlDatabase);
+    if (Object.keys(userUrls).includes(req.params.shortURL)) {
+      let templateVars = {
+        shortURL: req.params.shortURL,
+        longURL: urlDatabase[req.params.shortURL].longURL,
+        urlUserID: urlDatabase[req.params.shortURL].userID,
+        user: users[req.session.user_id],
+      };
+
+      res.render("urls_show", templateVars);
+    }
+    else {
+      res.send("you don't have access");
+    }
+
   } else {
     res.status(404).send("The short URL you entered does not correspond with a long URL at this time.");
   }
@@ -109,12 +121,14 @@ app.get("/u/:shortURL", (req, res) => {
 });
 
 app.post("/urls", (req, res) => {
+  console.log('req.body', req.body)
   if (req.session.user_id) {
     const shortURL = generateRandomString();
     urlDatabase[shortURL] = {
       longURL: req.body.longURL,
       userID: req.session.user_id,
     };
+    console.log('urlDatabase', urlDatabase);
     res.redirect(`/urls/${shortURL}`);
   } else {
     res.status(401).send("You must be logged in to a valid account to create short URLs.");
@@ -178,9 +192,10 @@ app.post("/urls/:shortURL/delete", (req, res) => {
 app.post("/urls/:id", (req, res) => {
   const userID = req.session.user_id;
   const userUrls = urlsForUser(userID, urlDatabase);
+
   if (Object.keys(userUrls).includes(req.params.id)) {
     const shortURL = req.params.id;
-    urlDatabase[shortURL].longURL = req.body.newURL;
+    urlDatabase[shortURL].longURL = req.body.longURL;
     res.redirect('/urls');
   } else {
     res.status(401).send("You do not have authorization to edit this short URL.");
