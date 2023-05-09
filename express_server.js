@@ -8,6 +8,15 @@ const PORT = 8080;
 const { generateRandomString, emailHasUser, userIdFromEmail, urlsForUser, cookieHasUser } = require("./helpers");
 const { users, urlDatabase } = require("./database");
 
+app.use(bodyParser.urlencoded({ extended: true }));
+
+app.use(cookieSession({
+  name: 'session',
+  keys: ['CAITLIN'],
+  maxAge: 24 * 60 * 60 * 1000,
+}));
+
+
 
 /* Below are ROUTES */
 
