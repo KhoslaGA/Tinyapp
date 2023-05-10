@@ -45,8 +45,6 @@ app.get("/urls", (req, res) => {
     urls: urlsForUser(req.session.user_id, urlDatabase),
     user: users[req.session.user_id],
   };
-  console.log('users', users);
-  console.log('urlDatabase', urlDatabase);
   res.render("urls_index", templateVars);
 });
 
@@ -121,14 +119,12 @@ app.get("/u/:shortURL", (req, res) => {
 });
 
 app.post("/urls", (req, res) => {
-  console.log('req.body', req.body)
   if (req.session.user_id) {
     const shortURL = generateRandomString();
     urlDatabase[shortURL] = {
       longURL: req.body.longURL,
       userID: req.session.user_id,
     };
-    console.log('urlDatabase', urlDatabase);
     res.redirect(`/urls/${shortURL}`);
   } else {
     res.status(401).send("You must be logged in to a valid account to create short URLs.");
